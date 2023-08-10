@@ -97,7 +97,7 @@ console.log(x[0] + ":" + x[1]);
     cel15.innerHTML = list15[x];
     cel16.innerHTML = "<button>edit</button>  <button>save</button>";
 
-
+   
     n++;
     x++;
 }

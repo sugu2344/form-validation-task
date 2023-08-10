@@ -1,63 +1,67 @@
-x
-body{
-    background-color:rgb(168, 172, 120);
-    display: flex;
-    justify-content: center;
- 
-}
-.heading{
-    text-align: center;
-    background-color: lavender;
+
+.heading {
+  text-align: center;
+  background-color:#b8f7da;
 }
 .content {
-    justify-content: space-between;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: row
-    
+  justify-content: space-between;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
 }
 
-.formcontent{
-    padding: 30px 125px;
-    background-color: ivory;
+.formcontent {
+  padding: 30px 125px;
+  /* background-color: ivory; */
+  background-color: #fed092;
+ 
 }
-.content1{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;    
+.content1 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
-.buttons{
-    display: flex;
-    justify-content: center;
+.buttons {
+  display: flex;
+  justify-content: center;
 }
-.buttons1{
-    padding: 5px;
-    border: 1px solid black;
-    margin-left: 10px;
-    border-radius: 5px;
+.buttons1 {
+  padding: 5px;
+  border: 1px solid black;
+  margin-left: 10px;
+  border-radius: 5px;
 }
-.container{
-     display: flex;
-    flex-direction: column;
-    justify-content: center; 
+.container {
+    /* background-image: url(cart.png); */
+    background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  /* z-index: -1; */
 }
-.formcolumn{
-width: 50%;
-align-self: center;
+.formcolumn {
+  width: 50%;
+  align-self: center;
+  /* background-color: blanchedalmond; */
+  font-weight: bold;
+  font-size: large;
+  
 }
-.aa{
-    padding-left: 15px;
+.aa {
+  padding-left: 15px;
 }
-table{
-    background-color: aqua;
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 50px;
+table {
+  background-color: aqua;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 50px;
 }
-th,td{
-    border-collapse: collapse;
-    border: 1px solid black;
+th,
+td {
+  border-collapse: collapse;
+  border: 1px solid black;
 }
-#dataTable{
-    padding: 20px 10px;
+#dataTable {
+  padding: 20px 10px;
 }

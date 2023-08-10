@@ -53,13 +53,13 @@ console.log(x[0] + ":" + x[1]);
     list6[x] = document.getElementById("contactphone").value;
     list7[x] = document.getElementById("contactemail").value;
     list8[x] = document.getElementById("notes").value;
-    list9[x] = document.getElementById("type").value;
-    list10[x] = document.getElementById("category").value;
+    list9[x] = Type();
+    list10[x] =category();
     list11[x] = document.getElementById("commisionpercentage").value;
     list12[x] = document.getElementById("activeform").value;
     list13[x] = document.getElementById("myfile").value;
-    list14[x] = document.getElementById("yes").value;
-    list15[x] = document.getElementById("payment").value;
+    list14[x] = CriticalAccount();
+    list15[x] =Paymentoption();
 
     
 
@@ -95,11 +95,45 @@ console.log(x[0] + ":" + x[1]);
     cel13.innerHTML = list13[x]; 
     cel14.innerHTML = list14[x];
     cel15.innerHTML = list15[x];
-    cel16.innerHTML = "<button>edit</button>";
+    cel16.innerHTML = "<button>edit</button>  <button>save</button>";
 
 
     n++;
     x++;
+}
+function Type() {
+  var radio = document.getElementsByName("Type");
+  var selectedType = "";
+  for (i = 0; i < radio.length; i++) {
+    if (radio[i].checked) selectedType = radio[i].value;
+  }
+  return selectedType;
+}
+
+function Paymentoption() { 
+  var transaction = document.getElementsByName("Paymentoptions");
+  var selectedType = [];
+  for (i = 0; i < transaction.length; i++) {
+    if (transaction[i].checked) selectedType.push(transaction[i].value);
+  }
+  return selectedType;
+}
+// .........
+function CriticalAccount() {
+  var radio = document.getElementsByName("CriticalAccount");
+  var selectedType = "";
+  for (i = 0; i < radio.length; i++) {
+    if (radio[i].checked) selectedType = radio[i].value;
+  }
+  return selectedType;
+}
+function category() { 
+  var transaction = document.getElementsByName("category");
+  var selectedType = [];
+  for (i = 0; i < transaction.length; i++) {
+    if (transaction[i].checked) selectedType.push(transaction[i].value);
+  }
+  return selectedType;
 }
 
   

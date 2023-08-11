@@ -5,13 +5,14 @@ document.addEventListener("submit", function (event) {
     event.preventDefault();
     const form  = event.target; 
     const formData = new FormData(form)
-    let data = {}
+    var data = {}
     for(let x of formData.entries()){
         data[x[0]] = x[1]
 console.log(x[0] + ":" + x[1]);
     }
     console.log(data,'data')
     localStorage.setItem('data', JSON.stringify(data))
+
   });
 
 
@@ -36,7 +37,7 @@ console.log(x[0] + ":" + x[1]);
     var list13 =[];
     var list14 =[];
     var list15 =[];
-    var list16 =[];
+    
 		
 
 		var n = 1;
@@ -59,7 +60,7 @@ console.log(x[0] + ":" + x[1]);
     list12[x] = document.getElementById("activeform").value;
     list13[x] = document.getElementById("myfile").value;
     list14[x] = CriticalAccount();
-    list15[x] =Paymentoption();
+    list15[x] =Paymentoption(); 
 
     
 
@@ -97,10 +98,13 @@ console.log(x[0] + ":" + x[1]);
     cel15.innerHTML = list15[x];
     cel16.innerHTML = "<button>edit</button>  <button>save</button>";
 
-   
-    n++;
-    x++;
+ 
+  
+    // n++;
+    // x++;
+    reset()
 }
+
 function Type() {
   var radio = document.getElementsByName("Type");
   var selectedType = "";
@@ -135,6 +139,47 @@ function category() {
   }
   return selectedType;
 }
+// ..........reset.................
+function reset() {
+  // document.getElementById("submit").innerText = "Submit";
+  document.getElementById("fname").value = " ";
+  document.getElementById("email").value = " ";
+  document.getElementById("phone").value = " ";
+  document.getElementById("website").value = " ";
+  document.getElementById("contactname").value = " ";
+  document.getElementById("contactphone").value = " ";
+  document.getElementById("contactemail").value = " ";
+  document.getElementById("notes").value = " ";
+  document.getElementsByName("Type").checked = resetBussinessType();
+  document.getElementsByName("category").selected = resetCategory();
+  document.getElementById("commisionpercentage").value = " ";
+  document.getElementById("activeform").value = " ";
+  document.getElementsByName("CriticalAccount").checked = resetAccount();
+  document.getElementsByName("Paymentoptions").checked = resetPaymentMethod();
+}
+function resetBussinessType() {
+  var Type = document.getElementsByName("Type");
+  for (var i = 0; i < Type.length; i++) {
+    Type[i].checked = false;
+  }
+}
+function resetCategory() {
+  var transaction = document.getElementsByName("category");
+  for ( let i = 0; i < transaction.length; i++) {
+    transaction[i].checked=false;
+  }
+}
+function resetAccount() {
+  var radio = document.getElementsByName("CriticalAccount");
+  for (let i = 0; i < radio.length; i++) {
+    radio[i].checked = false;
+  }
+}
+function resetPaymentMethod() {
+  var Type = document.getElementsByName("Paymentoptions");
+  for (var i = 0; i < Type.length; i++) {
+    Type[i].checked = false;
+  }
+}
 
-  
 

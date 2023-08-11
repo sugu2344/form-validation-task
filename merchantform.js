@@ -1,108 +1,85 @@
 // alert("kindly register your details")
 
-document.getElementById("formdetails")
+document.getElementById("formdetails");
 document.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const form  = event.target; 
-    const formData = new FormData(form)
-    var data = {}
-    for(let x of formData.entries()){
-        data[x[0]] = x[1]
-console.log(x[0] + ":" + x[1]);
-    }
-    console.log(data,'data')
-    localStorage.setItem('data', JSON.stringify(data))
-
-  });
-
-
-
-//   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;.....................;;;;;;;;;;;;;;;;;;;;;
-
-
-  function AddRow(){
-
-    var list1 = [];
-    var list2 =[];
-    var list3 =[];
-    var list4 =[];
-    var list5 =[];
-    var list6 =[];
-    var list7 =[];
-    var list8 =[];
-    var list9 =[];
-    var list10 =[];
-    var list11 =[];
-    var list12 =[];
-    var list13 =[];
-    var list14 =[];
-    var list15 =[];
-    
-		
-
-		var n = 1;
-		var x = 0;
-
-    var AddRow = document.getElementById('dataTable');
-    var NewRow = AddRow.insertRow(n);
-
-    list1[x] = document.getElementById("fname").value;
-    list2[x] = document.getElementById("email").value;
-    list3[x] = document.getElementById("phone").value;
-    list4[x] = document.getElementById("website").value;
-    list5[x] = document.getElementById("contactname").value;
-    list6[x] = document.getElementById("contactphone").value;
-    list7[x] = document.getElementById("contactemail").value;
-    list8[x] = document.getElementById("notes").value;
-    list9[x] = Type();
-    list10[x] =category();
-    list11[x] = document.getElementById("commisionpercentage").value;
-    list12[x] = document.getElementById("activeform").value;
-    list13[x] = document.getElementById("myfile").value;
-    list14[x] = CriticalAccount();
-    list15[x] =Paymentoption(); 
-
-    
-
-    var cel1 = NewRow.insertCell(0);
-    var cel2 = NewRow.insertCell(1);
-    var cel3 = NewRow.insertCell(2);
-    var cel4 = NewRow.insertCell(3);
-    var cel5 = NewRow.insertCell(4);
-    var cel6 = NewRow.insertCell(5);
-    var cel7 = NewRow.insertCell(6);
-    var cel8 = NewRow.insertCell(7);
-    var cel9 = NewRow.insertCell(8);
-    var cel10 = NewRow.insertCell(9);
-    var cel11= NewRow.insertCell(10);
-    var cel12 = NewRow.insertCell(11);
-    var cel13 = NewRow.insertCell(12);
-    var cel14 = NewRow.insertCell(13);
-    var cel15 = NewRow.insertCell(14);
-    var cel16 = NewRow.insertCell(15);
-  
-    cel1.innerHTML = list1[x];
-    cel2.innerHTML = list2[x];
-    cel3.innerHTML = list3[x];
-    cel4.innerHTML = list4[x];
-    cel5.innerHTML = list5[x];
-    cel6.innerHTML = list6[x];
-    cel7.innerHTML = list7[x];
-    cel8.innerHTML = list8[x];
-    cel9.innerHTML = list9[x];
-    cel10.innerHTML = list10[x];
-    cel11.innerHTML = list11[x];
-    cel12.innerHTML = list12[x];
-    cel13.innerHTML = list13[x]; 
-    cel14.innerHTML = list14[x];
-    cel15.innerHTML = list15[x];
-    cel16.innerHTML = "<button>edit</button>  <button>save</button>";
+  event.preventDefault();
+  const form = event.target;
+  const formData = new FormData(form);
+  var data = {};
+  for (let x of formData.entries()) {
+    data[x[0]] = x[1];
+    console.log(x[0] + ":" + x[1]);
+  }
+  console.log(data, "data");
 
  
-  
-    // n++;
-    // x++;
-    reset()
+});
+
+// ..column display..................
+const list = [];
+
+function AddRow() {
+  let record = {};
+
+  var AddRow = document.getElementById("dataTable");
+  var NewRow = AddRow.insertRow();
+
+  record.name = document.getElementById("fname").value;
+  record.mail = document.getElementById("email").value;
+  record.phone = document.getElementById("phone").value;
+  record.website = document.getElementById("website").value;
+  record.contactname = document.getElementById("contactname").value;
+  record.contactphone = document.getElementById("contactphone").value;
+  record.contactemail = document.getElementById("contactemail").value;
+  record.notes = document.getElementById("notes").value;
+  record.type = Type();
+  record.category = category();
+  record.commisionpercentage = document.getElementById("commisionpercentage").value;
+  record.activeform = document.getElementById("activeform").value;
+  record.myfile = document.getElementById("myfile").value;
+  record.criticalaccount = CriticalAccount();
+  record.paymentoptions = Paymentoption();
+
+  list.push(record);
+
+  var cel1 = NewRow.insertCell(0);
+  var cel2 = NewRow.insertCell(1);
+  var cel3 = NewRow.insertCell(2);
+  var cel4 = NewRow.insertCell(3);
+  var cel5 = NewRow.insertCell(4);
+  var cel6 = NewRow.insertCell(5);
+  var cel7 = NewRow.insertCell(6);
+  var cel8 = NewRow.insertCell(7);
+  var cel9 = NewRow.insertCell(8);
+  var cel10 = NewRow.insertCell(9);
+  var cel11 = NewRow.insertCell(10);
+  var cel12 = NewRow.insertCell(11);
+  var cel13 = NewRow.insertCell(12);
+  var cel14 = NewRow.insertCell(13);
+  var cel15 = NewRow.insertCell(14);
+  var cel16 = NewRow.insertCell(15);
+
+  cel1.innerHTML = record.name;
+  cel2.innerHTML = record.mail;
+  cel3.innerHTML = record.phone;
+  cel4.innerHTML = record.website;
+  cel5.innerHTML = record.contactname;
+  cel6.innerHTML = record.contactphone;
+  cel7.innerHTML = record.contactemail;
+  cel8.innerHTML = record.notes;
+  cel9.innerHTML = record.type;
+  cel10.innerHTML = record.category;
+  cel11.innerHTML = record.commisionpercentage;
+  cel12.innerHTML = record.activeform;
+  cel13.innerHTML = record.myfile;
+  cel14.innerHTML = record.criticalaccount;
+  cel15.innerHTML = record.paymentoptions;
+  cel16.innerHTML = "<button>edit</button>  <button>save</button>";
+
+  localStorage.setItem("data", JSON.stringify(list));
+  sessionStorage.setItem("data", JSON.stringify(list));
+
+  reset();
 }
 
 function Type() {
@@ -114,7 +91,7 @@ function Type() {
   return selectedType;
 }
 
-function Paymentoption() { 
+function Paymentoption() {
   var transaction = document.getElementsByName("Paymentoptions");
   var selectedType = [];
   for (i = 0; i < transaction.length; i++) {
@@ -122,7 +99,7 @@ function Paymentoption() {
   }
   return selectedType;
 }
-// .........
+
 function CriticalAccount() {
   var radio = document.getElementsByName("CriticalAccount");
   var selectedType = "";
@@ -131,7 +108,7 @@ function CriticalAccount() {
   }
   return selectedType;
 }
-function category() { 
+function category() {
   var transaction = document.getElementsByName("category");
   var selectedType = [];
   for (i = 0; i < transaction.length; i++) {
@@ -139,21 +116,22 @@ function category() {
   }
   return selectedType;
 }
-// ..........reset.................
+// ..........form reset.................
+
 function reset() {
-  // document.getElementById("submit").innerText = "Submit";
-  document.getElementById("fname").value = " ";
-  document.getElementById("email").value = " ";
-  document.getElementById("phone").value = " ";
-  document.getElementById("website").value = " ";
-  document.getElementById("contactname").value = " ";
-  document.getElementById("contactphone").value = " ";
-  document.getElementById("contactemail").value = " ";
-  document.getElementById("notes").value = " ";
+
+  document.getElementById("fname").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("phone").value = "";
+  document.getElementById("website").value = "";
+  document.getElementById("contactname").value = "";
+  document.getElementById("contactphone").value = "";
+  document.getElementById("contactemail").value = "";
+  document.getElementById("notes").value = "";
   document.getElementsByName("Type").checked = resetBussinessType();
   document.getElementsByName("category").selected = resetCategory();
-  document.getElementById("commisionpercentage").value = " ";
-  document.getElementById("activeform").value = " ";
+  document.getElementById("commisionpercentage").value = "";
+  document.getElementById("activeform").value = "";
   document.getElementsByName("CriticalAccount").checked = resetAccount();
   document.getElementsByName("Paymentoptions").checked = resetPaymentMethod();
 }
@@ -165,8 +143,8 @@ function resetBussinessType() {
 }
 function resetCategory() {
   var transaction = document.getElementsByName("category");
-  for ( let i = 0; i < transaction.length; i++) {
-    transaction[i].checked=false;
+  for (let i = 0; i < transaction.length; i++) {
+    transaction[i].checked = false;
   }
 }
 function resetAccount() {
@@ -181,5 +159,3 @@ function resetPaymentMethod() {
     Type[i].checked = false;
   }
 }
-
-

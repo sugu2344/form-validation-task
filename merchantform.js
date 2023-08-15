@@ -1,28 +1,17 @@
 // alert("kindly register your details")
-
-document.getElementById("formdetails");
+var list = [];
+ document.getElementById("formdetails");
 document.addEventListener("submit", function (event) {
-  event.preventDefault();
-  const form = event.target;
-  const formData = new FormData(form);
-  var data = {};
-  for (let x of formData.entries()) {
-    data[x[0]] = x[1];
-    console.log(x[0] + ":" + x[1]);
-  }
-  console.log(data, "data");
-
- 
-});
+ event.preventDefault();
+  });
+//table data  
+  
 
 // ..column display..................
-const list = [];
+
 
 function AddRow() {
-  let record = {};
-
-  var AddRow = document.getElementById("dataTable");
-  var NewRow = AddRow.insertRow();
+  var record = {};
 
   record.name = document.getElementById("fname").value;
   record.mail = document.getElementById("email").value;
@@ -40,46 +29,51 @@ function AddRow() {
   record.criticalaccount = CriticalAccount();
   record.paymentoptions = Paymentoption();
 
-  list.push(record);
+  var AddRow = document.getElementById("dataTable");
+  var NewRow = AddRow.insertRow();
 
-  var cel1 = NewRow.insertCell(0);
-  var cel2 = NewRow.insertCell(1);
-  var cel3 = NewRow.insertCell(2);
-  var cel4 = NewRow.insertCell(3);
-  var cel5 = NewRow.insertCell(4);
-  var cel6 = NewRow.insertCell(5);
-  var cel7 = NewRow.insertCell(6);
-  var cel8 = NewRow.insertCell(7);
-  var cel9 = NewRow.insertCell(8);
-  var cel10 = NewRow.insertCell(9);
-  var cel11 = NewRow.insertCell(10);
-  var cel12 = NewRow.insertCell(11);
-  var cel13 = NewRow.insertCell(12);
-  var cel14 = NewRow.insertCell(13);
-  var cel15 = NewRow.insertCell(14);
-  var cel16 = NewRow.insertCell(15);
+var cel1 = NewRow.insertCell(0);
+var cel2 = NewRow.insertCell(1);
+var cel3 = NewRow.insertCell(2);
+var cel4 = NewRow.insertCell(3);
+var cel5 = NewRow.insertCell(4);
+var cel6 = NewRow.insertCell(5);
+var cel7 = NewRow.insertCell(6);
+var cel8 = NewRow.insertCell(7);
+var cel9 = NewRow.insertCell(8);
+var cel10 = NewRow.insertCell(9);
+var cel11 = NewRow.insertCell(10);
+var cel12 = NewRow.insertCell(11);
+var cel13 = NewRow.insertCell(12);
+var cel14 = NewRow.insertCell(13);
+var cel15 = NewRow.insertCell(14);
+var cel16 = NewRow.insertCell(15);
 
-  cel1.innerHTML = record.name;
-  cel2.innerHTML = record.mail;
-  cel3.innerHTML = record.phone;
-  cel4.innerHTML = record.website;
-  cel5.innerHTML = record.contactname;
-  cel6.innerHTML = record.contactphone;
-  cel7.innerHTML = record.contactemail;
-  cel8.innerHTML = record.notes;
-  cel9.innerHTML = record.type;
-  cel10.innerHTML = record.category;
-  cel11.innerHTML = record.commisionpercentage;
-  cel12.innerHTML = record.activeform;
-  cel13.innerHTML = record.myfile;
-  cel14.innerHTML = record.criticalaccount;
-  cel15.innerHTML = record.paymentoptions;
-  cel16.innerHTML = "<button>edit</button>  <button>save</button>";
-
-  localStorage.setItem("data", JSON.stringify(list));
-  sessionStorage.setItem("data", JSON.stringify(list));
-
-  reset();
+cel1.innerHTML = record.name;
+cel2.innerHTML = record.mail;
+cel3.innerHTML = record.phone;
+cel4.innerHTML = record.website;
+cel5.innerHTML = record.contactname;
+cel6.innerHTML = record.contactphone;
+cel7.innerHTML = record.contactemail;
+cel8.innerHTML = record.notes;
+cel9.innerHTML = record.type;
+cel10.innerHTML = record.category;
+cel11.innerHTML = record.commisionpercentage;
+cel12.innerHTML = record.activeform;
+cel13.innerHTML = record.myfile;
+cel14.innerHTML = record.criticalaccount;
+cel15.innerHTML = record.paymentoptions;
+var editButton = document.createElement("button");
+editButton.innerHTML = "Edit";
+editButton.addEventListener("click", function () { 
+  editBtn(record);
+});
+cel16.appendChild(editButton);
+list.push(record);
+localStorage.setItem("data", JSON.stringify(list));
+sessionStorage.setItem("data", JSON.stringify(list));
+reset(); 
 }
 
 function Type() {
@@ -116,6 +110,7 @@ function category() {
   }
   return selectedType;
 }
+
 // ..........form reset.................
 
 function reset() {
@@ -159,3 +154,67 @@ function resetPaymentMethod() {
     Type[i].checked = false;
   }
 }
+
+// .......  edit & delete
+let localStorageData = JSON.parse(localStorage.getItem("details"));
+if (localStorageData === null) localStorageData = [];
+
+// localStorageData.push(data);
+// localStorage.setItem("details", JSON.stringify(localStorageData));
+
+// loadTableData();
+
+//......................edit response...............
+function editBtn(edit) {
+  document.getElementById("fname").value =edit.name;
+  document.getElementById("email").value =edit.mail;
+  document.getElementById("phone").value =edit.phone;
+  document.getElementById("website").value =edit.website;
+  document.getElementById("contactname").value =edit.contactname;
+  document.getElementById("contactphone").value =edit.contactphone;
+  document.getElementById("contactemail").value =edit.contactemail;
+  document.getElementById("notes").value =edit.notes;
+  findBusinessType(edit.type);
+  findCategory(edit.category);
+  document.getElementById("commisionpercentage").value =edit.commisionpercentage;
+  document.getElementById("activeform").value =edit.activeform;
+  findCriticalAccount(edit.criticalaccount);
+  findPaymentMethod(edit.paymentoptions);
+}
+function findBusinessType(edit) {
+  let fnType = document.getElementsByName("Type");
+  for (var i = 0; i < fnType.length; i++) {
+      if (fnType[i].value == edit) {
+        fnType[i].checked = true;
+    }
+  }
+  }
+function findCategory(edit) {
+  let fnCategory = document.getElementsByName("category");
+  for (var i = 0; i < fnCategory.length; i++) {
+    for (var j = 0; j < edit.length; j++) {
+      if (fnCategory[i].value == edit[j]) {
+        fnCategory[i].checked = true;
+      }
+    }
+  }
+}
+function findCriticalAccount(edit) {
+let fnCritical = document.getElementsByName("CriticalAccount");
+for (var i = 0; i < fnCritical.length; i++) {
+    if (fnCritical[i].value == edit) {
+    }
+  }
+}
+
+function findPaymentMethod(edit) {
+  let fnPayment = document.getElementsByName("Paymentoptions");
+  for (var i = 0; i < fnPayment.length; i++) {
+    for (var j = 0; j < edit.length; j++) {
+      if (fnPayment[i].value == edit[j]) {
+        fnPayment[i].checked = true;
+      }
+    }
+  }
+}
+

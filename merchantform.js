@@ -1,10 +1,10 @@
-// alert("kindly register your details")
+alert("kindly register your details")
 var list = [];
  document.getElementById("formdetails");
 document.addEventListener("submit", function (event) {
  event.preventDefault();
   });
-//table data  
+ 
   
 
 // ..column display..................
@@ -78,8 +78,10 @@ deleteButton.addEventListener("click", function () {
 cel16.appendChild(editButton);
 cel16.appendChild(deleteButton);
 list.push(record);
+// console.log(record);
 localStorage.setItem("data", JSON.stringify(list));
 sessionStorage.setItem("data", JSON.stringify(list));
+console.log(record);
 reset(); 
 }
 
@@ -162,7 +164,7 @@ function resetPaymentMethod() {
   }
 }
 
-// .......  edit & delete
+
 let localStorageData = JSON.parse(localStorage.getItem("details"));
 if (localStorageData === null) localStorageData = [];
 
@@ -171,7 +173,7 @@ if (localStorageData === null) localStorageData = [];
 
 // loadTableData();
 
-//......................edit response...............
+//......................edit form...............
 function editBtn(edit) {
   document.getElementById("fname").value =edit.name;
   document.getElementById("email").value =edit.mail;
@@ -226,21 +228,35 @@ function findPaymentMethod(edit) {
   }
 }
 // ...................delete..................
+
 function deleteRow(record) {
   var getData = JSON.parse(localStorage.getItem("data"));
 
   var index = getData.findIndex(function (item) {
-    return item.email === record.email });
+    return item.email === record.email;
+  });
 
   if (index !== -1) {
     getData.splice(index, 1);
     localStorage.setItem("data", JSON.stringify(getData));
 
     var table = document.getElementById("dataTable");
-    table.deleteRow(index + 1); 
+   
+    var rowToDelete = null;
+    for (var i = 1; i < table.rows.length; i++) {
+      if (table.rows[i].cells[1].innerHTML === record.mail) {
+        rowToDelete = table.rows[i];
+        break;
+      }
+    }
+
+    if (rowToDelete) {
+      table.deleteRow(rowToDelete.rowIndex);
+    }
   }
 }
-// ........... cell reupdate after change and save
+
+
 
 
 

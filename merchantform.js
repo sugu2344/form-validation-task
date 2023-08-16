@@ -69,7 +69,14 @@ editButton.innerHTML = "Edit";
 editButton.addEventListener("click", function () { 
   editBtn(record);
 });
+  var deleteButton = document.createElement("button");
+deleteButton.innerHTML = "delete";
+deleteButton.addEventListener("click", function () { 
+  deleteRow(record);
+  
+});
 cel16.appendChild(editButton);
+cel16.appendChild(deleteButton);
 list.push(record);
 localStorage.setItem("data", JSON.stringify(list));
 sessionStorage.setItem("data", JSON.stringify(list));
@@ -203,6 +210,7 @@ function findCriticalAccount(edit) {
 let fnCritical = document.getElementsByName("CriticalAccount");
 for (var i = 0; i < fnCritical.length; i++) {
     if (fnCritical[i].value == edit) {
+      fnCritical[i].checked=true;
     }
   }
 }
@@ -217,4 +225,28 @@ function findPaymentMethod(edit) {
     }
   }
 }
+// ...................delete..................
+function deleteRow(record) {
+  var getData = JSON.parse(localStorage.getItem("data"));
+
+  var index = getData.findIndex(function (item) {
+    return item.email === record.email });
+
+  if (index !== -1) {
+    getData.splice(index, 1);
+    localStorage.setItem("data", JSON.stringify(getData));
+
+    var table = document.getElementById("dataTable");
+    table.deleteRow(index + 1); 
+  }
+}
+// ........... cell reupdate after change and save
+
+
+
+
+
+
+
+
 

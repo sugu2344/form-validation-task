@@ -1,16 +1,23 @@
-alert("kindly register your details")
+// alert("kindly register your details")
 var list = [];
  document.getElementById("formdetails");
 document.addEventListener("submit", function (event) {
  event.preventDefault();
   });
- 
-  
-
+  // ......
+  var values= null; 
+  var rowNum;
+  function AddRow() {
+        if (values == null)
+            insertNewRecord();
+        else
+            updateRecord();
+        reset(); 
+  }
 // ..column display..................
 
 
-function AddRow() {
+function insertNewRecord() {
   var record = {};
 
   record.name = document.getElementById("fname").value;
@@ -78,7 +85,6 @@ deleteButton.addEventListener("click", function () {
 cel16.appendChild(editButton);
 cel16.appendChild(deleteButton);
 list.push(record);
-// console.log(record);
 localStorage.setItem("data", JSON.stringify(list));
 sessionStorage.setItem("data", JSON.stringify(list));
 console.log(record);
@@ -93,7 +99,6 @@ function Type() {
   }
   return selectedType;
 }
-
 function Paymentoption() {
   var transaction = document.getElementsByName("Paymentoptions");
   var selectedType = [];
@@ -118,7 +123,7 @@ function category() {
     if (transaction[i].checked) selectedType.push(transaction[i].value);
   }
   return selectedType;
-}
+}console.log(category)
 
 // ..........form reset.................
 
@@ -175,6 +180,7 @@ if (localStorageData === null) localStorageData = [];
 
 //......................edit form...............
 function editBtn(edit) {
+  values=1
   document.getElementById("fname").value =edit.name;
   document.getElementById("email").value =edit.mail;
   document.getElementById("phone").value =edit.phone;
@@ -189,6 +195,13 @@ function editBtn(edit) {
   document.getElementById("activeform").value =edit.activeform;
   findCriticalAccount(edit.criticalaccount);
   findPaymentMethod(edit.paymentoptions);
+
+  var getData = JSON.parse(localStorage.getItem("data"));
+  var index = getData.findIndex(function (item) {
+    return item.mail == edit.mail;
+  });
+rowNum = index;
+localStorage.setItem("data", JSON.stringify(getData));
 }
 function findBusinessType(edit) {
   let fnType = document.getElementsByName("Type");
@@ -233,7 +246,7 @@ function deleteRow(record) {
   var getData = JSON.parse(localStorage.getItem("data"));
 
   var index = getData.findIndex(function (item) {
-    return item.email === record.email;
+    return item.mail == record.mail;
   });
 
   if (index !== -1) {
@@ -255,9 +268,54 @@ function deleteRow(record) {
     }
   }
 }
+// ...........
+// function editBtn(edit) {
+//   var table = document.getElementById("dataTable");
+//   for (var i = 1; i < table.rows.length; i++) {
+//     if (table.rows[i].cells[1].innerHTML === edit.mail) {
+//       updateTableRow(table.rows[i], edit);
+//       break;
+//     }
+//   }
+//   reset(); // Reset the form after editing
+// }
+function updateRecord(){
+  let newData = {};
+  var retrieveData = JSON.parse(localStorage.getItem("data"));
+  newData.name = document.getElementById("fname").value;
+  newData.email = document.getElementById("email").value;
+  newData.phone = document.getElementById("phone").value;
+  newData.website = document.getElementById("website").value;
+  newData.contactName = document.getElementById("contactname").value;
+  newData.contactPhone = document.getElementById("contactphone").value;
+  newData.contactMail = document.getElementById("contactemail").value;
+  newData.notes = document.getElementById("notes").value;
+  newData.type = Type();
+  newData.category = category();
+  newData.percentage = document.getElementById("commisionpercentage").value;
+  newData.duration = document.getElementById("activeform").value;
+  newData.critical = CriticalAccount();
+  newData.payment = Paymentoption();
 
-
-
+var table = document.getElementById("dataTable");
+var editRow = table.rows[rowNum + 1];
+editRow.cells[0].innerHTML = newData.name;
+editRow.cells[1].innerHTML = newData.email;
+editRow.cells[2].innerHTML = newData.phone;
+editRow.cells[3].innerHTML = newData.website;
+editRow.cells[4].innerHTML = newData.contactName;
+editRow.cells[5].innerHTML = newData.contactPhone;
+editRow.cells[6].innerHTML = newData.contactMail;
+editRow.cells[7].innerHTML = newData.notes;
+editRow.cells[8].innerHTML = newData.type;
+editRow.cells[9].innerHTML = newData.category;
+editRow.cells[10].innerHTML = newData.percentage;
+editRow.cells[11].innerHTML = newData.duration;
+editRow.cells[12].innerHTML = "";
+editRow.cells[13].innerHTML = newData.critical;
+editRow.cells[14].innerHTML = newData.payment;
+localStorage.setItem("data", JSON.stringify(retrieveData));
+}
 
 
 

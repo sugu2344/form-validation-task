@@ -1,9 +1,13 @@
 
 var list = [];
+window.onload = function () {
+  localStorage.removeItem("data");
+};
  document.getElementById("formdetails");
 document.addEventListener("submit", function (event) {
  event.preventDefault();
   });
+
   // ......
   var values= null; 
   var rowNum;
@@ -88,7 +92,7 @@ cel16.appendChild(editButton);
 cel16.appendChild(deleteButton);
 list.push(record);
 localStorage.setItem("data", JSON.stringify(list));
-sessionStorage.setItem("data", JSON.stringify(list));
+// sessionStorage.setItem("data", JSON.stringify(list));
 
 reset(); 
 }
@@ -242,12 +246,15 @@ function findPaymentMethod(edit) {
 // ...................delete..................
 
 function deleteRow(record) {
+
   var getData = JSON.parse(localStorage.getItem("data"));
 
   var index = getData.findIndex(function (item) {
-    return item.mail == record.mail;
-  });
+    return item.mail == record.mail || item.phone==record.phone;
 
+  });
+  console.log(index)
+  console.log(record);
   if (index !== -1) {
     getData.splice(index, 1);
     localStorage.setItem("data", JSON.stringify(getData));
@@ -307,6 +314,7 @@ editRow.cells[11].innerHTML = newData.duration;
 editRow.cells[12].innerHTML = "";
 editRow.cells[13].innerHTML = newData.critical;
 editRow.cells[14].innerHTML = newData.payment;
+list[rowNum]=newData;
 retrieveData[rowNum]=newData;
 localStorage.setItem("data", JSON.stringify(retrieveData));
 }

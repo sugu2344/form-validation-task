@@ -270,6 +270,7 @@ function deleteRow(record) {
 // ...........update same row......
 
 function updateRecord(){
+  
   let newData = {};
   var retrieveData = JSON.parse(localStorage.getItem("data"));
   newData.name = document.getElementById("fname").value;

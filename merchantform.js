@@ -307,7 +307,6 @@ editRow.cells[12].innerHTML = "";
 editRow.cells[13].innerHTML = newData.critical;
 editRow.cells[14].innerHTML = newData.payment;
 retrieveData[rowNum]=newData;
-//  console.log(retrieveData[rowNum]);
 localStorage.setItem("data", JSON.stringify(retrieveData));
 }
 

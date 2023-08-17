@@ -16,7 +16,9 @@ document.addEventListener("submit", function (event) {
   }
 // ..column display..................
 
-
+window.onload=function(){
+  localStorage.removeItem("data")
+}
 function insertNewRecord() {
   var record = {};
 
@@ -35,7 +37,7 @@ function insertNewRecord() {
   record.myfile = document.getElementById("myfile").value;
   record.criticalaccount = CriticalAccount();
   record.paymentoptions = Paymentoption();
-
+  console.log(record);
   var AddRow = document.getElementById("dataTable");
   var NewRow = AddRow.insertRow();
 
@@ -284,7 +286,8 @@ function updateRecord(){
   newData.duration = document.getElementById("activeform").value;
   newData.critical = CriticalAccount();
   newData.payment = Paymentoption();
-  // console.log(newData);
+
+  console.log(newData);
 
 var table = document.getElementById("dataTable");
 var editRow = table.rows[rowNum + 1];
@@ -304,7 +307,7 @@ editRow.cells[12].innerHTML = "";
 editRow.cells[13].innerHTML = newData.critical;
 editRow.cells[14].innerHTML = newData.payment;
 retrieveData[rowNum]=newData;
- console.log(retrieveData[rowNum]);
+//  console.log(retrieveData[rowNum]);
 localStorage.setItem("data", JSON.stringify(retrieveData));
 }
 

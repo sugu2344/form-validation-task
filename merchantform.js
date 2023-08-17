@@ -1,4 +1,4 @@
-// alert("kindly register your details")
+
 var list = [];
  document.getElementById("formdetails");
 document.addEventListener("submit", function (event) {
@@ -87,7 +87,7 @@ cel16.appendChild(deleteButton);
 list.push(record);
 localStorage.setItem("data", JSON.stringify(list));
 sessionStorage.setItem("data", JSON.stringify(list));
-console.log(record);
+
 reset(); 
 }
 
@@ -123,7 +123,7 @@ function category() {
     if (transaction[i].checked) selectedType.push(transaction[i].value);
   }
   return selectedType;
-}console.log(category)
+}
 
 // ..........form reset.................
 
@@ -173,10 +173,7 @@ function resetPaymentMethod() {
 let localStorageData = JSON.parse(localStorage.getItem("details"));
 if (localStorageData === null) localStorageData = [];
 
-// localStorageData.push(data);
-// localStorage.setItem("details", JSON.stringify(localStorageData));
 
-// loadTableData();
 
 //......................edit form...............
 function editBtn(edit) {
@@ -268,17 +265,8 @@ function deleteRow(record) {
     }
   }
 }
-// ...........
-// function editBtn(edit) {
-//   var table = document.getElementById("dataTable");
-//   for (var i = 1; i < table.rows.length; i++) {
-//     if (table.rows[i].cells[1].innerHTML === edit.mail) {
-//       updateTableRow(table.rows[i], edit);
-//       break;
-//     }
-//   }
-//   reset(); // Reset the form after editing
-// }
+// ...........update same row......
+
 function updateRecord(){
   let newData = {};
   var retrieveData = JSON.parse(localStorage.getItem("data"));
@@ -296,6 +284,7 @@ function updateRecord(){
   newData.duration = document.getElementById("activeform").value;
   newData.critical = CriticalAccount();
   newData.payment = Paymentoption();
+  // console.log(newData);
 
 var table = document.getElementById("dataTable");
 var editRow = table.rows[rowNum + 1];
@@ -314,6 +303,8 @@ editRow.cells[11].innerHTML = newData.duration;
 editRow.cells[12].innerHTML = "";
 editRow.cells[13].innerHTML = newData.critical;
 editRow.cells[14].innerHTML = newData.payment;
+retrieveData[rowNum]=newData;
+ console.log(retrieveData[rowNum]);
 localStorage.setItem("data", JSON.stringify(retrieveData));
 }
 

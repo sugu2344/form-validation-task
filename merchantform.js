@@ -24,6 +24,7 @@ window.onload=function(){
   localStorage.removeItem("data")
 }
 function insertNewRecord() {
+
   var record = {};
 
   record.name = document.getElementById("fname").value;
@@ -201,7 +202,7 @@ function editBtn(edit) {
 
   var getData = JSON.parse(localStorage.getItem("data"));
   var index = getData.findIndex(function (item) {
-    return item.mail == edit.mail;
+    return edit.mail == edit.mail;
   });
 rowNum = index;
 localStorage.setItem("data", JSON.stringify(getData));
@@ -284,14 +285,14 @@ function updateRecord(){
   newData.email = document.getElementById("email").value;
   newData.phone = document.getElementById("phone").value;
   newData.website = document.getElementById("website").value;
-  newData.contactName = document.getElementById("contactname").value;
-  newData.contactPhone = document.getElementById("contactphone").value;
-  newData.contactMail = document.getElementById("contactemail").value;
+  newData.contactname = document.getElementById("contactname").value;
+  newData.contactphone = document.getElementById("contactphone").value;
+  newData.contactemail = document.getElementById("contactemail").value;
   newData.notes = document.getElementById("notes").value;
   newData.type = Type();
   newData.category = category();
-  newData.percentage = document.getElementById("commisionpercentage").value;
-  newData.duration = document.getElementById("activeform").value;
+  newData.commisionpercentage = document.getElementById("commisionpercentage").value;
+  newData.activeform= document.getElementById("activeform").value;
   newData.critical = CriticalAccount();
   newData.payment = Paymentoption();
 
@@ -303,17 +304,17 @@ editRow.cells[0].innerHTML = newData.name;
 editRow.cells[1].innerHTML = newData.email;
 editRow.cells[2].innerHTML = newData.phone;
 editRow.cells[3].innerHTML = newData.website;
-editRow.cells[4].innerHTML = newData.contactName;
-editRow.cells[5].innerHTML = newData.contactPhone;
-editRow.cells[6].innerHTML = newData.contactMail;
+editRow.cells[4].innerHTML = newData.contactname;
+editRow.cells[5].innerHTML = newData.contactphone;
+editRow.cells[6].innerHTML = newData.contactemail;
 editRow.cells[7].innerHTML = newData.notes;
 editRow.cells[8].innerHTML = newData.type;
 editRow.cells[9].innerHTML = newData.category;
-editRow.cells[10].innerHTML = newData.percentage;
-editRow.cells[11].innerHTML = newData.duration;
-editRow.cells[12].innerHTML = "";
-editRow.cells[13].innerHTML = newData.critical;
-editRow.cells[14].innerHTML = newData.payment;
+editRow.cells[10].innerHTML = newData.commisionpercentage;
+editRow.cells[11].innerHTML = newData.activeform;
+// editRow.cells[12].innerHTML = "";
+editRow.cells[12].innerHTML = newData.critical;
+editRow.cells[13].innerHTML = newData.payment;
 list[rowNum]=newData;
 retrieveData[rowNum]=newData;
 localStorage.setItem("data", JSON.stringify(retrieveData));

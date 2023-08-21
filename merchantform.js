@@ -1,4 +1,3 @@
-
 var list = [];
 window.onload = function () {
   localStorage.removeItem("data");
@@ -318,12 +317,5 @@ editRow.cells[13].innerHTML = newData.payment;
 list[rowNum]=newData;
 retrieveData[rowNum]=newData;
 localStorage.setItem("data", JSON.stringify(retrieveData));
+values= null;
 }
-
-
-
-
-
-
-
-
